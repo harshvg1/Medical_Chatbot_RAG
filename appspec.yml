@@ -5,7 +5,17 @@ files:
     destination: /home/ec2-user/medchatbot
 
 hooks:
+  BeforeInstall:
+    - location: scripts/stop_frontend.sh
+      timeout: 300
+      runas: ec2-user
+
   AfterInstall:
     - location: scripts/deploy_frontend.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: scripts/start_frontend.sh
       timeout: 300
       runas: ec2-user
