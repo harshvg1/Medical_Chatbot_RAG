@@ -1,0 +1,11 @@
+version: 0.0
+os: linux
+files:
+  - source: build/
+    destination: /home/ec2-user/medchatbot
+
+hooks:
+  AfterInstall:
+    - location: scripts/deploy_frontend.sh
+      timeout: 300
+      runas: ec2-user
