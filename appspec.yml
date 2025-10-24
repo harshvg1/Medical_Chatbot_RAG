@@ -1,21 +1,21 @@
 version: 0.0
 os: linux
 files:
-  - source: build/
-    destination: /home/ec2-user/medchatbot
+  - source: /
+    destination: /home/ec2-user/frontend
 
 hooks:
   BeforeInstall:
-    - location: scripts/stop_frontend.sh
-      timeout: 300
+    - location: scripts/before_install.sh
+      timeout: 180
       runas: ec2-user
 
   AfterInstall:
-    - location: scripts/deploy_frontend.sh
+    - location: scripts/after_install.sh
       timeout: 300
       runas: ec2-user
 
   ApplicationStart:
-    - location: scripts/start_frontend.sh
+    - location: scripts/start_server.sh
       timeout: 300
       runas: ec2-user
