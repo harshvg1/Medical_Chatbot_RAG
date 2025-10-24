@@ -1,5 +1,6 @@
 #!/bin/bash
-# Serve frontend using npm serve
-cd /home/ec2-user/medchatbot
-nohup npx serve -s . > frontend.log 2>&1 &
-echo "Frontend started"
+set -e
+cd /home/ec2-user/frontend || exit
+echo "Starting React app via PM2..."
+pm2 start npm --name "frontend" -- start -- --host 0.0.0.0 --port 3000
+pm2 save
