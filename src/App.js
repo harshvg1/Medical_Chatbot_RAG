@@ -9,26 +9,26 @@ function App() {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
+  // Scroll to the latest message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
+
     const newMessages = [...messages, { role: "user", text: input }];
     setMessages(newMessages);
     setInput("");
     setLoading(true);
 
     try {
-      const res = await fetch(
-        "https://5ouknhixj2.execute-api.us-east-1.amazonaws.com/prod/medchatbot-lamda", // replace with your Lambda API
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: input }),
-        }
-      );
+      const API_URL = process.env.REACT_APP_API_URL; // Use Amplify environment variable
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: input }),
+      });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
@@ -54,6 +54,7 @@ function App() {
           ))}
           <div ref={messagesEndRef} />
         </div>
+
         <div className="input-box">
           <input
             type="text"
@@ -62,7 +63,9 @@ function App() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
           />
-          <button onClick={handleSend} disabled={loading}>{loading ? "..." : "Send"}</button>
+          <button onClick={handleSend} disabled={loading}>
+            {loading ? "..." : "Send"}
+          </button>
         </div>
       </div>
     </div>
