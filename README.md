@@ -8,7 +8,7 @@ This project integrates:
 - **Amazon Bedrock (Titan LLM)** — Generates accurate, human-like responses  
 - **Amazon Bedrock Knowledge Base (KB)** — Retrieves verified data from S3  
 - **AWS Lambda + API Gateway** — Backend logic and API interface  
-- **React Frontend (Deployed on EC2)** — Chat UI for users  
+- **React Frontend (Deployed on AWS Amplify)** — Chat UI for users  
 - **AWS Amplify** — Automates deployment using GitHub
 
 ---
