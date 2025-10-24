@@ -9,6 +9,6 @@ This project integrates:
 - **Amazon Bedrock Knowledge Base (KB)** — Retrieves verified data from S3  
 - **AWS Lambda + API Gateway** — Backend logic and API interface  
 - **React Frontend (Deployed on EC2)** — Chat UI for users  
-- **AWS CodeDeploy** — Automates deployment to EC2
+- **AWS Amplify** — Automates deployment using GitHub
 
 ---
